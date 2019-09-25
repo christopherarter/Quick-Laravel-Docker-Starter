@@ -9,7 +9,7 @@ Prerequisites:
 3. **Docker** [install guide](https://docs.docker.com/v17.09/engine/installation/)
 4. **Docker Compose** [install guide](https://docs.docker.com/compose/install/)
 
-###Get started
+### Get started
 
  
 1. Clone this repo and navigate to the repo folder. Run `composer create-project --prefer-dist laravel/laravel my-app`
