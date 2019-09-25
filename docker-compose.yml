@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  #web app
+  laravel_web:
+    build:
+      context: ./
+    ports:
+      - 9002:80
+    volumes:
+      - ./:/var/www/app
+    container_name: laravel_web
+
+  
+  #database
+  laravel_db:
+    image: mariadb
+    ports:
+      - 3305:3306
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    container_name: laravel_db
+
+
+  #test database
+  laravel_db_test:
+    image: mariadb
+    ports:
+      - 3304:3306
+    volumes:
+      - ./db_data_test:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    container_name: laravel_db_test
+volumes:
+  db_data: {}
