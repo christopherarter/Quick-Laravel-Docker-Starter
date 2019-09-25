@@ -6,7 +6,7 @@ services:
     build:
       context: ./
     ports:
-      - 9002:80
+      - 9000:80
     volumes:
       - ./:/var/www/app
     container_name: laravel_web
