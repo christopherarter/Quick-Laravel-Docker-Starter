@@ -1,0 +1,30 @@
+FROM php:7.3-apache
+
+RUN apt-get update -yqq && \
+    apt-get install -y \
+        apt-utils zip unzip \
+        nano \
+        libzip-dev libpq-dev  \
+        libxml2-dev \
+        libmcrypt-dev \
+    && a2enmod rewrite && \
+    docker-php-ext-install pdo && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install mysqli && \
+    docker-php-ext-configure zip --with-libzip && \
+    docker-php-ext-install zip && \
+    docker-php-ext-install hash && \
+    docker-php-ext-install mbstring && \
+    docker-php-ext-install bcmath && \
+    docker-php-ext-install json && \
+    docker-php-ext-install tokenizer && \
+    #apt-get install supervisor -y && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/app/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
+WORKDIR /var/www/app
+EXPOSE 80
