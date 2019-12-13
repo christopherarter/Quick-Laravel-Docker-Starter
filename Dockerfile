@@ -1,7 +1,7 @@
 FROM carter-laravel-starter:latest
 
-COPY --chown=www-data:www-data my-app/composer.json my-app/composer.lock ./
+COPY --chown=www-data:www-data composer.json composer.lock ./
 RUN composer install --prefer-dist --no-autoloader
 
-COPY --chown=www-data:www-data my-app/* .
+COPY --chown=www-data:www-data . .
 RUN composer dump-autoload --optimize
