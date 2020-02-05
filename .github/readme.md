@@ -12,20 +12,8 @@ Prerequisites:
 ### Get started
 
  
-1. Clone this repo and navigate to the repo folder. Run `composer create-project --prefer-dist laravel/laravel my-app`
-4. Run `mv my-app/* my-app/.* ./ && rm -rf my-app`
-5. Change the values in your `.env` to the values below:
-
-```
-DB_CONNECTION=mysql
-DB_HOST=laravel_db
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=laravel_user
-DB_PASSWORD=myStrongPassword1234
-```
- 
-The last step, run `docker-compose up`
+1. Clone this repo and navigate to the repo folder. Run `bash ./new_project.sh`
+2. Run `docker-compose up`
 
 When you run `docker ps`, you should see your service running locally at `http://localhost:9000`
 
